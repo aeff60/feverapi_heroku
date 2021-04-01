@@ -1,19 +1,19 @@
 from flask import Flask, request
-from flask_cors import CORS, cross_origin
+
 import joblib
 import numpy as np
 import re
 
 
 app = Flask(__name__)
-CORS(app)
+
 
 @app.route('/')
 def helloworld():
     return 'Hello world'
 
 @app.route('/fever', methods=['POST'])
-@cross_origin()
+
 def predict_species():
     model = joblib.load('fever.model')
     req = request.values['param']
