@@ -1,18 +1,19 @@
 from flask import Flask, request
-
+from flask_cors import CORS, cross_origin
 import joblib
 import numpy as np
 import re
 
 
 app = Flask(__name__)
-
+CORS(app)
 
 @app.route('/')
 def helloworld():
-    return 'Hello world'
+    return 'fever model - เพิ่มพาท /fever ที่ url แล้ว POST ค่าไปเช่น KEY: param, VALUE:36.1,1,1,11,0,0 มันจะส่งค่าชื่อโรคกลับมา'
 
 @app.route('/fever', methods=['POST'])
+@cross_origin()
 
 def predict_species():
     model = joblib.load('fever.model')
